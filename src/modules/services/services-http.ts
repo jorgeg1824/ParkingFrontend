@@ -25,10 +25,10 @@ export async function getRequest<T>(
   }
 }
 
-// POST
-export async function postRequest<T>(
+// POST (genérico y flexible)
+export async function postRequest<T, B = unknown>(
   endpoint: string,
-  body: Record<string, unknown>
+  body: B
 ): Promise<HttpResponse<T>> {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -41,7 +41,9 @@ export async function postRequest<T>(
       return { error: `Error: ${response.status} - ${response.statusText}` }
     }
 
-    const data = response.status !== 204 ? (await response.json()) as T : undefined
+    const data =
+      response.status !== 204 ? ((await response.json()) as T) : undefined
+
     return { success: data }
   } catch (error) {
     return { error: `Error: ${String(error)}` }
