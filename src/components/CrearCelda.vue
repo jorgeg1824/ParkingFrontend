@@ -24,7 +24,6 @@ const errors = reactive({
   numeroCelda: "",
 })
 
-// Datos dinámicos del backend
 const tiposCelda = ref<CellType[]>([])
 const zonas = ref<Zone[]>([])
 
@@ -77,8 +76,8 @@ const sendForm = async () => {
       </h1>
     </div>
 
-    <!-- Tipo de Celda -->
-    <select
+    <div class="col-5 mx-auto mt-4">
+      <select
       class="form-select"
       v-model="form.cellType"
       :class="{
@@ -96,9 +95,8 @@ const sendForm = async () => {
       </option>
     </select>
 
-<!-- Zona -->
     <select
-      class="form-select"
+      class="form-select mt-2"
       v-model="form.zone"
       :class="{
         'is-invalid': errors.zona,
@@ -115,8 +113,7 @@ const sendForm = async () => {
     </option>
   </select>
 
-    <!-- Número de Celda -->
-    <div class="d-flex col-2 gap-2 justify-content-center mx-auto w-50 form-floating mt-2 fst-italic flex-column">
+  <div class="d-flex col-2 gap-2 justify-content-center mx-auto w-50 form-floating mt-2 fst-italic flex-column">
       <input
         type="number"
         class="form-control"
@@ -135,14 +132,14 @@ const sendForm = async () => {
     </div>
     <div
       v-if="errors.numeroCelda"
-      class="invalid-feedback d-flex justify-content-center mx-auto w-50 mt-1"
+      class="invalid-feedback d-flex justify-content-center mx-auto w-100 mt-2"
       style="display: block !important;"
     >
       {{ errors.numeroCelda }}
     </div>
 
     <!-- Estado -->
-    <div class="d-flex gap-2 col-6 justify-content-center mx-auto state mt-2 fst-italic">
+    <div class="d-flex gap-2  w-100 justify-content-center mx-auto state mt-2 fst-italic">
       <h4>Estado:</h4>
       <input class="form-control" type="text" v-model="form.isActive" disabled />
     </div>
@@ -160,6 +157,8 @@ const sendForm = async () => {
         Cancelar
       </button>
     </div>
+    </div>
+
   </form>
 </template>
 
