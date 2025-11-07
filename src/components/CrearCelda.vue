@@ -61,9 +61,9 @@ const sendForm = async () => {
 
   const response = await createCelda(form)
   if (response?.error) {
-    alert(`❌ Error: ${response.error}`)
+    alert(` Error: ${response.error}`)
   } else {
-    alert(`✅ Celda registrada correctamente`)
+    alert(` Celda registrada correctamente`)
     Object.assign(form, { cellType: "", zone: "", name: "", isActive: true })
   }
 }
